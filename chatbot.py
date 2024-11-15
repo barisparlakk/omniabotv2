@@ -17,7 +17,7 @@ class Chatbot:
 
     def generate_response(self, user_input):
         greeting_responses = ["Hi! How can I help you today?",
-                              "Hello, How can I help you today?",
+                              "Hello, How can I help you today?",Classname
                               "Hey! How can I help you today?",
                               "Hi! What can I help you with today?"]
         if "hi" in user_input.lower():
