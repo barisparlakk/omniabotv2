@@ -44,7 +44,7 @@ class WeatherBot(Chatbot):
         self.weather_api_key = weather_api_key
 
     def get_weather(self, location):
-        base_url = "http://api.openweathermap.org/data/2.5/weather"
+        base_url = "https://api.openweathermap.org/data/2.5/weather"
         params = {
             "q": location,
             "appid": self.weather_api_key,
@@ -88,3 +88,8 @@ if __name__ == "__main__":
         user_input = chatbot.get_input()
         response = chatbot.generate_response(user_input)
         print(response)
+#
+#class TranslateBot:
+#    def __init__(self, name, google_translate_api_key):
+#        super().__init__(name)
+#        self.google_translate_api_key = google_translate_api_key
