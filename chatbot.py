@@ -27,19 +27,20 @@ class Chatbot:
             city = input("Which city or town would you like to know the weather for? ")
             weather_bot = WeatherBot(self.name, os.getenv("weather_api_key"))
             return weather_bot.get_weather(city)
+
+        ###
         elif "reminder" in user_input.lower():
             reminder = input("What reminder would you like to add? ")
             return self.add_reminder(reminder)
-
+###
 
 class WeatherBot(Chatbot):
     def __init__(self, name, weather_api_key):
         super().__init__(name)
-        self.name = name
         self.weather_api_key = weather_api_key
 
     def get_weather(self, location):
-        base_url = "http://api.openweathermap.org/data/2.5/weather?q={location}&appid={self.weather_api_key}"
+        base_url = "http://api.openweathermap.org/data/2.5/weather"
         params = {
             "q": location,
             "appid": self.weather_api_key,
@@ -50,7 +51,7 @@ class WeatherBot(Chatbot):
             response.raise_for_status()
             data = response.json()
             temp = data["main"]["temp"]
-            return f"The weather in {location} is {data['weather'][0]['description']}"
+            return f"The weather in {location} is {data['weather'][0]['description']} with a temperature of {temp}°C."
         except requests.exceptions.RequestException as e:
             return f"Error fetching weather data: {e}"
         except KeyError:
