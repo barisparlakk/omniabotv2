@@ -93,3 +93,4 @@ if __name__ == "__main__":
 #    def __init__(self, name, google_translate_api_key):
 #        super().__init__(name)
 #        self.google_translate_api_key = google_translate_api_key
+#
