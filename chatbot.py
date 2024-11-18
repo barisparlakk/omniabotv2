@@ -94,3 +94,9 @@ if __name__ == "__main__":
 #        super().__init__(name)
 #        self.google_translate_api_key = google_translate_api_key
 #
+
+#uml diyagraminda ici dolu baklava has insan kalp
+# uml diyagraminda ici bos baklava has evcıl hayvan insan
+# uml diyagraminda kalitim:hiyerarsik kalıtımda hayvan dıye sınıf olusturupş uce bolup okların ucu hayvan classına bağlı,
+#
+#
