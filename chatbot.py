@@ -97,6 +97,6 @@ if __name__ == "__main__":
 
 #uml diyagraminda ici dolu baklava has insan kalp
 # uml diyagraminda ici bos baklava has evcıl hayvan insan
-# uml diyagraminda kalitim:hiyerarsik kalıtımda hayvan dıye sınıf olusturupş uce bolup okların ucu hayvan classına bağlı,
+# uml diyagraminda kalitim:hiyerarsik kalıtımda hayvan dıye sınıf olusturupş uce bolup okların ucu hayvan classına bağlı, is kullanilir
 #
 #
