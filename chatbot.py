@@ -88,6 +88,7 @@ if __name__ == "__main__":
         user_input = chatbot.get_input()
         response = chatbot.generate_response(user_input)
         print(response)
+
 #
 #class TranslateBot:
 #    def __init__(self, name, google_translate_api_key):
