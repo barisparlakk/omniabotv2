@@ -27,7 +27,7 @@ class Chatbot:
         elif "how are you" in user_input.lower():
             return "I'm a chatbot made by humans. I don't have any feelings."
         elif "weather" in user_input.lower():
-            city = input("Which city or town would you like to know the weather for? ")
+            city = input("Which city or town would you like to know the weather for?  ")
             weather_bot = WeatherBot(self.name, os.getenv("weather_api_key"))
             return weather_bot.get_weather(city)
         elif "add reminder" in user_input.lower():
