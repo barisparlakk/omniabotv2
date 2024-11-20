@@ -9,10 +9,17 @@ name = "Omnia"
 
 class Chatbot:
     def __init__(self, name):
-        self.name = name
+        self.__name = name
+
+    def get_name(self):
+        return self.__name
+
+    @classmethod
+    def get_class_name(cls):
+        return cls.__name__
 
     def get_input(self):
-        user_input = input("Hello, I'm Omnia, what can I help you with today? ")
+        user_input = input(f"Hello, I'm {self.get_name()}, what can I help you with today? ")
         return user_input
 
     def generate_response(self, user_input):
@@ -28,7 +35,7 @@ class Chatbot:
             return "I'm a chatbot made by humans. I don't have any feelings."
         elif "weather" in user_input.lower():
             city = input("Which city or town would you like to know the weather for?  ")
-            weather_bot = WeatherBot(self.name, os.getenv("weather_api_key"))
+            weather_bot = WeatherBot(self.get_name(), os.getenv("weather_api_key"))
             return weather_bot.get_weather(city)
         elif "add reminder" in user_input.lower():
             reminder_name = input("What is the name of the reminder? ")
@@ -84,10 +91,13 @@ class ReminderBot(Chatbot):
 if __name__ == "__main__":
     chatbot = Chatbot(name)
     reminder_bot = ReminderBot(name)
-    while True:
-        user_input = chatbot.get_input()
-        response = chatbot.generate_response(user_input)
-        print(response)
+    try:
+        while True:
+            user_input = chatbot.get_input()
+            response = chatbot.generate_response(user_input)
+            print(response)
+    except KeyboardInterrupt:
+        print("\nProgram interrupted by user. Exiting... ")
 
 #CLASSMETHOD STATICMETHOD KULLAN, PRIVATE VARIABLE KULLAN
 
