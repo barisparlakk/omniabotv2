@@ -89,7 +89,9 @@ if __name__ == "__main__":
         response = chatbot.generate_response(user_input)
         print(response)
 
-#
+#CLASSMETHOD STATICMETHOD KULLAN, PRIVATE VARIABLE KULLAN
+
+
 #class TranslateBot:
 #    def __init__(self, name, google_translate_api_key):
 #        super().__init__(name)
