@@ -9,7 +9,7 @@ name = "Omnia"
 
 class Chatbot:
     def __init__(self, name):
-        self.__name = name
+        self.__name = name #private variable.
 
     def get_name(self):
         return self.__name
@@ -48,6 +48,9 @@ class Chatbot:
             reminder_date = input("What is the date of the reminder? (YYYY-MM-DD) ")
             reminder_time = input("What is the time of the reminder? (HH:MM) ")
             return reminder_bot.add_reminder(reminder_name, reminder_date, reminder_time)
+        elif "delete reminder" in user_input.lower():
+            reminder_name = input("What is the name of the reminder you want to delete? ")
+            return reminder_bot.del_reminder(reminder_name)
         elif "show reminders" in user_input.lower():
             return reminder_bot.show_reminders()
 
@@ -77,7 +80,7 @@ class WeatherBot(Chatbot):
 class ReminderBot(Chatbot):
     def __init__(self, name):
         super().__init__(name)
-        self.reminders = []
+        self.__reminders = []
 
     def add_reminder(self, reminder_name, reminder_date, reminder_time):
         reminder = {
@@ -85,13 +88,24 @@ class ReminderBot(Chatbot):
             "date": reminder_date,
             "time": reminder_time
         }
-        self.reminders.append(reminder)
+        self.__reminders.append(reminder)
         return "Reminder added successfully"
 
+    def del_reminder(self, reminder_name):
+        for reminder in self.__reminders:
+            if reminder["name"] == reminder_name:
+                self.__reminders.remove(reminder)
+                return "Reminder deleted successfully"
+        return "Reminder not found."
+
+    def get_reminders(self):
+        return self.__reminders
+
+
     def show_reminders(self):
-        if not self.reminders:
+        if not self.__reminders:
             return "No reminders set."
-        reminders_list = "\n".join([f"{reminder['name']} on {reminder['date']} at {reminder['time']}" for reminder in self.reminders])
+        reminders_list = "\n".join([f"{reminder['name']} on {reminder['date']} at {reminder['time']}" for reminder in self.get_reminders()])
         return f"Your reminders:\n{reminders_list}"
 
 if __name__ == "__main__":
