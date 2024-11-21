@@ -14,6 +14,11 @@ class Chatbot:
     def get_name(self):
         return self.__name
 
+    @staticmethod
+    def greet():
+        return "Hi."
+
+
     @classmethod
     def get_class_name(cls):
         return cls.__name__
@@ -21,6 +26,7 @@ class Chatbot:
     def get_input(self):
         user_input = input(f"Hello, I'm {self.get_name()}, what can I help you with today? ")
         return user_input
+
 
     def generate_response(self, user_input):
         greeting_responses = ["Hi! How can I help you today?",
@@ -93,18 +99,17 @@ if __name__ == "__main__":
     reminder_bot = ReminderBot(name)
     try:
         while True:
+            print(Chatbot.greet())
             user_input = chatbot.get_input()
             response = chatbot.generate_response(user_input)
             print(response)
     except KeyboardInterrupt:
         print("\nProgram interrupted by user. Exiting... ")
 
-#CLASSMETHOD STATICMETHOD KULLAN, PRIVATE VARIABLE KULLAN
-
 
 #class TranslateBot:
 #    def __init__(self, name, google_translate_api_key):
 #        super().__init__(name)
-#        self.google_translate_api_key = google_translate_api_key
+#        self.__google_translate_api_key = google_translate_api_key
 #
 
