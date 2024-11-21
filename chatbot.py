@@ -6,7 +6,6 @@ from datetime import datetime
 
 load_dotenv()
 name = "Omnia"
-
 class Chatbot:
     def __init__(self, name):
         self.__name = name #private variable.
