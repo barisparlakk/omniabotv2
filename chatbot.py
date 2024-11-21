@@ -16,15 +16,15 @@ class Chatbot:
 
     @staticmethod
     def greet():
-        return "Hi."
+        return "Hi ,"
 
-
+#getter kullandigim kisim.
     @classmethod
     def get_class_name(cls):
         return cls.__name__
 
     def get_input(self):
-        user_input = input(f"Hello, I'm {self.get_name()}, what can I help you with today? ")
+        user_input = input(f"I'm your {self.get_class_name()},and my name is {self.get_name()}, what can I help you with today? ")
         return user_input
 
 
@@ -95,6 +95,7 @@ class ReminderBot(Chatbot):
         return f"Your reminders:\n{reminders_list}"
 
 if __name__ == "__main__":
+    Chatbot.get_class_name() #
     chatbot = Chatbot(name)
     reminder_bot = ReminderBot(name)
     try:
