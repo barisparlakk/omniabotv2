@@ -125,5 +125,9 @@ if __name__ == "__main__":
 #    def __init__(self, name, google_translate_api_key):
 #        super().__init__(name)
 #        self.__google_translate_api_key = google_translate_api_key
-#
+#     self.__languages = self.get_supported_languages()
+#    def get_supported_languages(self):
+#        base_url = "https://translation.googleapis.com/language/translate/v2/languages"
+#        params = { "key": self.__google_translate_api_key }
+#        response = requests.get(base_url, params=params)
 
