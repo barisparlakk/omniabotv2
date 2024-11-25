@@ -144,5 +144,8 @@ if __name__ == "__main__":
 #        data = response.json()
 #        translation = data["data"]["translations"][0]["translatedText"]
 #        return translation
-
+#    def get_languages(self):
+#        return self.__languages
+#    def get_language_code(self, language_name):
+#        for language in self.get_languages():  
 
