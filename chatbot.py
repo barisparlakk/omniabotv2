@@ -151,5 +151,6 @@ class TranslateBot:
             if language["name"].lower() == language_name.lower():
                 return language["language"]
         return None
-    
+    def get_language_name(self, language_code):
+        
 
