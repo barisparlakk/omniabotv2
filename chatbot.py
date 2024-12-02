@@ -88,14 +88,14 @@ class ReminderBot(Chatbot):
             "time": reminder_time
         }
         self.__reminders.append(reminder)
-        return "Reminder added successfully"
+        return "Reminder added successfully. "
 
     def del_reminder(self, reminder_name):
         for reminder in self.__reminders:
             if reminder["name"] == reminder_name:
                 self.__reminders.remove(reminder)
-                return "Reminder deleted successfully"
-        return "Reminder not found."
+                return "Reminder deleted successfully. "
+        return "Reminder not found. "
 
     def get_reminders(self):
         return self.__reminders
@@ -152,5 +152,6 @@ class TranslateBot:
                 return language["language"]
         return None
     def get_language_name(self, language_code):
-        
+        pass
+
 
