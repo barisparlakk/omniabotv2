@@ -121,37 +121,4 @@ if __name__ == "__main__":
         print("\nProgram interrupted by user. Exiting... ")
 
 
-class TranslateBot:
-    def __init__(self, name, google_translate_api_key):
-        super().__init__(name)
-        self.__google_translate_api_key = google_translate_api_key
-     self.__languages = self.get_supported_languages()
-    def get_supported_languages(self):
-        base_url = "https://translation.googleapis.com/language/translate/v2/languages"
-        params = { "key": self.__google_translate_api_key }
-        response = requests.get(base_url, params=params)
-        data = response.json()
-        languages = data["data"]["languages"]
-        return languages
-    def translate_text(self, text, target_language):
-        base_url = "https://translation.googleapis.com/language/translate/v2"
-        params = {
-            "key": self.__google_translate_api_key,
-           "q": text,
-            "target": target_language
-       }
-        response = requests.get(base_url, params=params)
-        data = response.json()
-        translation = data["data"]["translations"][0]["translatedText"]
-        return translation
-    def get_languages(self):
-        return self.__languages
-    def get_language_code(self, language_name):
-        for language in self.get_languages():
-            if language["name"].lower() == language_name.lower():
-                return language["language"]
-        return None
-    def get_language_name(self, language_code):
-        pass
-
 
