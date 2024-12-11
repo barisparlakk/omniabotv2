@@ -120,5 +120,6 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("\nProgram interrupted by user. Exiting... ")
 
+#Until this part was before the midterm. I'll update the following code until the final exam of OOP.
 
 
