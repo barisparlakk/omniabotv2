@@ -128,4 +128,6 @@ class abs(Chatbot):
 
     @abstractmethod
     def abstr(self,ABC):
+        pass
+    
 
