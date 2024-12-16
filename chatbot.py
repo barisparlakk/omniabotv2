@@ -2,6 +2,7 @@ import os
 import random
 import requests
 from dotenv import load_dotenv
+from ABC import ABC, abstractmethod
 from datetime import datetime
 
 load_dotenv()
@@ -121,5 +122,10 @@ if __name__ == "__main__":
         print("\nProgram interrupted by user. Exiting... ")
 
 #Until this part was before the midterm. I'll update the following code until the final exam of OOP.
+class abs(Chatbot):
+    def __init__(self, name):
+        super().__init__(name)
 
+    @abstractmethod
+    def abstr(self,ABC):
 
