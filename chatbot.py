@@ -130,4 +130,4 @@ class abs(Chatbot):
     def abstr(self,ABC):
         pass
     
-
+#polymorphism, overriding ile ilgili kisim, @abstractmethod kullan.
