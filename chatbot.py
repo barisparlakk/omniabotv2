@@ -103,21 +103,6 @@ class ReminderBot(Chatbot):
             return "No reminders set."
         reminders_list = "\n".join([f"{reminder['name']} on {reminder['date']} at {reminder['time']}" for reminder in self.get_reminders()])
         return f"Your reminders:\n{reminders_list}"
-"""
-if __name__ == "__main__":
-    Chatbot.get_class_name() #
-    chatbot = Chatbot(name), os.getenv("weather_api_key")
-    reminder_bot = ReminderBot(name)
-    try:
-        while True:
-            print(Chatbot.greet())
-            user_input = chatbot.get_input()
-            response = chatbot.generate_response(user_input)
-            print(response)
-    except KeyboardInterrupt:
-        print("\nProgram interrupted by user. Exiting... ")
-        
-"""
 
 if __name__ == "__main__":
     weather_bot = WeatherBot(name, os.getenv("weather_api_key"))
@@ -135,6 +120,6 @@ if __name__ == "__main__":
             print(response)
     except KeyboardInterrupt:
         print("\nProgram interrupted by user. Exiting...")
-#Until this part was before the midterm. I'll update the following code until the final exam of OOP.
+#Until this part was before the midterm. I'll update the following code until the final exam of OOP. ( Line-122, Line-68 Line-39 and Line-31)
 
 #polymorphism, overriding ile ilgili kisim, @abstractmethod kullan.
