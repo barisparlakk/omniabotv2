@@ -2,7 +2,7 @@ import os
 import random
 import requests
 from dotenv import load_dotenv
-from ABC import ABC, abstractmethod
+from abc import ABC, abstractmethod
 from datetime import datetime
 
 load_dotenv()
@@ -27,37 +27,20 @@ class Chatbot:
         user_input = input(f"I'm your {self.get_class_name()},and my name is {self.get_name()}, what can I help you with today? ")
         return user_input
 
-
+    @abstractmethod
     def generate_response(self, user_input):
-        greeting_responses = ["Hi! How can I help you today?",
-                              "Hello, How can I help you today?",
-                              "Hey! How can I help you today?",
-                              "Hi! What can I help you with today?"]
-        if "hi" in user_input.lower():
-            return random.choice(greeting_responses)
-        elif "hello" in user_input.lower():
-            return random.choice(greeting_responses)
-        elif "how are you" in user_input.lower():
-            return "I'm a chatbot made by humans. I don't have any feelings."
-        elif "weather" in user_input.lower():
-            city = input("Which city or town would you like to know the weather for?  ")
-            weather_bot = WeatherBot(self.get_name(), os.getenv("weather_api_key"))
-            return weather_bot.get_weather(city)
-        elif "add reminder" in user_input.lower():
-            reminder_name = input("What is the name of the reminder? ")
-            reminder_date = input("What is the date of the reminder? (YYYY-MM-DD) ")
-            reminder_time = input("What is the time of the reminder? (HH:MM) ")
-            return reminder_bot.add_reminder(reminder_name, reminder_date, reminder_time)
-        elif "delete reminder" in user_input.lower():
-            reminder_name = input("What is the name of the reminder you want to delete? ")
-            return reminder_bot.del_reminder(reminder_name)
-        elif "show reminders" in user_input.lower():
-            return reminder_bot.show_reminders()
+        pass
 
 class WeatherBot(Chatbot):
     def __init__(self, name, weather_api_key):
         super().__init__(name)
         self.weather_api_key = weather_api_key
+
+    def generate_response(self, user_input):
+        if "weather" in user_input.lower():
+            city = input("Which city or town would you like to know the weather for?  ")
+            return self.get_weather(city)
+        return "I can only provide weather information."
 
     def get_weather(self, location):
         base_url = "https://api.openweathermap.org/data/2.5/weather"
@@ -81,6 +64,19 @@ class ReminderBot(Chatbot):
     def __init__(self, name):
         super().__init__(name)
         self.__reminders = []
+
+    def generate_response(self, user_input):
+        if "add reminder" in user_input.lower():
+            reminder_name = input("What is the name of the reminder? ")
+            reminder_date = input("What is the date of the reminder? (YYYY-MM-DD) ")
+            reminder_time = input("What is the time of the reminder? (HH:MM) ")
+            return self.add_reminder(reminder_name, reminder_date, reminder_time)
+        elif "delete reminder" in user_input.lower():
+            reminder_name = input("What is the name of the reminder you want to delete? ")
+            return self.del_reminder(reminder_name)
+        elif "show reminders" in user_input.lower():
+            return self.show_reminders()
+        return "I can only manage reminders."
 
     def add_reminder(self, reminder_name, reminder_date, reminder_time):
         reminder = {
@@ -107,10 +103,10 @@ class ReminderBot(Chatbot):
             return "No reminders set."
         reminders_list = "\n".join([f"{reminder['name']} on {reminder['date']} at {reminder['time']}" for reminder in self.get_reminders()])
         return f"Your reminders:\n{reminders_list}"
-
+"""
 if __name__ == "__main__":
     Chatbot.get_class_name() #
-    chatbot = Chatbot(name)
+    chatbot = Chatbot(name), os.getenv("weather_api_key")
     reminder_bot = ReminderBot(name)
     try:
         while True:
@@ -120,14 +116,25 @@ if __name__ == "__main__":
             print(response)
     except KeyboardInterrupt:
         print("\nProgram interrupted by user. Exiting... ")
+        
+"""
 
+if __name__ == "__main__":
+    weather_bot = WeatherBot(name, os.getenv("weather_api_key"))
+    reminder_bot = ReminderBot(name)
+    try:
+        while True:
+            print(Chatbot.greet())
+            user_input = weather_bot.get_input()
+            if "weather" in user_input.lower():
+                response = weather_bot.generate_response(user_input)
+            elif "reminder" in user_input.lower():
+                response = reminder_bot.generate_response(user_input)
+            else:
+                response = "I can only provide weather information or manage reminders."
+            print(response)
+    except KeyboardInterrupt:
+        print("\nProgram interrupted by user. Exiting...")
 #Until this part was before the midterm. I'll update the following code until the final exam of OOP.
-class abs(Chatbot):
-    def __init__(self, name):
-        super().__init__(name)
 
-    @abstractmethod
-    def abstr(self,ABC):
-        pass
-    
 #polymorphism, overriding ile ilgili kisim, @abstractmethod kullan.
