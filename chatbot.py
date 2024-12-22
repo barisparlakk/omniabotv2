@@ -122,4 +122,5 @@ if __name__ == "__main__":
         print("\nProgram interrupted by user. Exiting...")
 #Until this part was before the midterm. I'll update the following code until the final exam of OOP. ( Line-122, Line-68 Line-39 and Line-31)
 
-#polymorphism, overriding ile ilgili kisim, @abstractmethod kullan.
+
+#polymorphism, overriding ile ilgili kisim, @abstractmethod, constructivemethod, interfaces, encapsulation kullan.
