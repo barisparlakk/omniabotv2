@@ -1,9 +1,7 @@
 import os
-import random
 import requests
 from dotenv import load_dotenv
 from abc import ABC, abstractmethod
-from datetime import datetime
 
 load_dotenv()
 name = "Omnia"
