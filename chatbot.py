@@ -8,6 +8,15 @@ from datetime import datetime
 load_dotenv()
 name = "Omnia"
 
+def help_info(user_input):
+    if "help weather" in user_input.lower():
+        return "WeatherBot commands:\n- weather: Get the current weather for a specified location."
+    elif "help reminders" in user_input.lower():
+        return "ReminderBot commands:\n- add reminder: Add a new reminder.\n- delete reminder: Delete an existing reminder.\n- show reminders: Show all reminders."
+    else:
+        return "Available commands:\n- help weather: List WeatherBot commands.\n- help reminders: List ReminderBot commands."
+
+
 class Chatbot:
     def __init__(self, name):
         self.__name = name #private variable.
@@ -38,10 +47,9 @@ class WeatherBot(Chatbot):
         self.weather_api_key = weather_api_key
 
     def generate_response(self, user_input):
-        if "weather" in user_input.lower():
+        if  user_input.lower() == "weather":
             city = input("Which city or town would you like to learn the weather for?  ")
             return self.get_weather(city)
-        return "I can only provide weather information."
 
     def get_weather(self, location):
         base_url = "https://api.openweathermap.org/data/2.5/weather"
@@ -77,7 +85,6 @@ class ReminderBot(Chatbot):
             return self.del_reminder(reminder_name)
         elif "show reminders" in user_input.lower():
             return self.show_reminders()
-        return "I can only manage reminders."
 
     def add_reminder(self, reminder_name, reminder_date, reminder_time):
         reminder = {
@@ -112,12 +119,15 @@ if __name__ == "__main__":
         while True:
             print(Chatbot.greet())
             user_input = weather_bot.get_input()
-            if "weather" in user_input.lower():
+            if "help" in user_input.lower():
+                response = help_info(user_input)
+            elif "weather" in user_input.lower() and "help" not in user_input.lower():
                 response = weather_bot.generate_response(user_input)
             elif "reminder" in user_input.lower():
                 response = reminder_bot.generate_response(user_input)
+
             else:
-                response = "I can only provide weather information or manage reminders, for now."
+                response = "I can only provide weather information or manage reminders, for now. Type 'help weather' or 'help reminders' for spesific information. "
             print(response)
     except KeyboardInterrupt:
         print("\nProgram interrupted by user. Exiting...")
