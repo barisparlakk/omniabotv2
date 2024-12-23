@@ -8,6 +8,8 @@ from datetime import datetime
 load_dotenv()
 name = "Omnia"
 
+
+#help module
 def help_info(user_input):
     if "help weather" in user_input.lower():
         return "WeatherBot commands:\n- weather: Get the current weather for a specified location."
