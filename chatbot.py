@@ -7,6 +7,7 @@ from datetime import datetime
 
 load_dotenv()
 name = "Omnia"
+
 class Chatbot:
     def __init__(self, name):
         self.__name = name #private variable.
@@ -38,7 +39,7 @@ class WeatherBot(Chatbot):
 
     def generate_response(self, user_input):
         if "weather" in user_input.lower():
-            city = input("Which city or town would you like to know the weather for?  ")
+            city = input("Which city or town would you like to learn the weather for?  ")
             return self.get_weather(city)
         return "I can only provide weather information."
 
@@ -116,7 +117,7 @@ if __name__ == "__main__":
             elif "reminder" in user_input.lower():
                 response = reminder_bot.generate_response(user_input)
             else:
-                response = "I can only provide weather information or manage reminders."
+                response = "I can only provide weather information or manage reminders, for now."
             print(response)
     except KeyboardInterrupt:
         print("\nProgram interrupted by user. Exiting...")
