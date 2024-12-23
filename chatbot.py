@@ -8,7 +8,6 @@ from datetime import datetime
 load_dotenv()
 name = "Omnia"
 
-
 #help module
 def help_info(user_input):
     if "help weather" in user_input.lower():
@@ -17,7 +16,6 @@ def help_info(user_input):
         return "ReminderBot commands:\n- add reminder: Add a new reminder.\n- delete reminder: Delete an existing reminder.\n- show reminders: Show all reminders."
     else:
         return "Available commands:\n- help weather: List WeatherBot commands.\n- help reminders: List ReminderBot commands."
-
 
 class Chatbot:
     def __init__(self, name):
@@ -107,7 +105,6 @@ class ReminderBot(Chatbot):
     def get_reminders(self):
         return self.__reminders
 
-
     def show_reminders(self):
         if not self.__reminders:
             return "No reminders set."
@@ -127,7 +124,6 @@ if __name__ == "__main__":
                 response = weather_bot.generate_response(user_input)
             elif "reminder" in user_input.lower():
                 response = reminder_bot.generate_response(user_input)
-
             else:
                 response = "I can only provide weather information or manage reminders, for now. Type 'help weather' or 'help reminders' for spesific information. "
             print(response)
