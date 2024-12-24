@@ -44,10 +44,26 @@ class WeatherBot(Chatbot):
         super().__init__(name)
         self.weather_api_key = weather_api_key
 
-    def generate_response(self, user_input):
-        if  user_input.lower() == "weather":
-            city = input("Which city or town would you like to learn the weather for?  ")
+    def generate_response(self, user_input, city=None): #overloading burada yapildi.  kullanici direkt sehir adi girerse de kod calisacak.
+        user_input = user_input.lower().strip()
+
+        if city:  # Eğer city parametresi verilmişse, doğrudan şehir adı ile hava durumu sorgulaması yapılır
             return self.get_weather(city)
+        elif "weather" in user_input:  # 'weather' komutu varsa, şehir ismi alınır
+            city = self.extract_city(user_input)
+            if city:  # Eğer şehir adı bulunmuşsa, hava durumu sorgulaması yapılır
+                return self.get_weather(city)
+            else:  # Şehir adı yoksa, kullanıcıdan şehir ismi istenir
+                city = input("Which city or town would you like to learn the weather for?  ")
+                return self.get_weather(city)
+
+    def extract_city(self, user_input):
+        # 'weather' kelimesi sonrasındaki kısımdan şehir ismini al
+        parts = user_input.split("weather", 1)
+        if len(parts) > 1:
+            city = parts[1].strip()  # 'weather' kelimesinden sonra gelen kısım
+            return city
+        return None
 
     def get_weather(self, location):
         base_url = "https://api.openweathermap.org/data/2.5/weather"
