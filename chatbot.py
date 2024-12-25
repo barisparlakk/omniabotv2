@@ -23,8 +23,8 @@ class Chatbot:
         return self.__name
 
     @staticmethod
-    def greet():
-        return "Hi ,"
+    def greet(): #COuld be greet also can leave it blank as well.
+        return "  "
 
 #getter kullandigim kisim.
     @classmethod
