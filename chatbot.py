@@ -148,13 +148,3 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("\nProgram interrupted by user. Exiting...")
 
-#Abstraction: 38. satirda kullanilmis. Artik dogrudan bir nesne olarak kullanilamaz. Alt siniflarin metodu kendine özgü bir sekilde kullanmasini zorunlu kıldık.
-
-
-#Polymorphism:
-
-#Overriding: Ayni isimli generate_response() methodu, farkli siniflarda farkli islevde. Weatherbot sinifinda hava durumu sorgusu yaparken,
-#ReminderBot sinifinda hatirlatici ekleme, hatirlatici silme, hatirlaticilari gosterme gorevleeini yerine getirir.
-
-#Overloading: 47. Satir. Ayni method ismini farkli parametreler ile kullandik. Ornegin WeatherBot.generate_response() methodu weather yazdiktan sonra sehir ismini alabildigi gibi,
-#direkt sehir adina inputta yer verilmesi ile direkt hava durumu sorgusunu yazdirabilir.
