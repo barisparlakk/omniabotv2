@@ -129,6 +129,9 @@ class ReminderBot(Chatbot):
         reminders_list = "\n".join([f"{reminder['name']} on {reminder['date']} at {reminder['time']}" for reminder in self.get_reminders()])
         return f"Your reminders:\n{reminders_list}"
 
+class TranslateBot(Chatbot):
+    pass
+
 if __name__ == "__main__":
     weather_bot = WeatherBot(name, os.getenv("weather_api_key"))
     reminder_bot = ReminderBot(name)
