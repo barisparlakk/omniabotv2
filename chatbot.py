@@ -16,6 +16,8 @@ def help_info(user_input):
         return "WeatherBot commands:\n- weather: Get the current weather for a specified location."
     elif "help reminders" in user_input.lower():
         return "ReminderBot commands:\n- add reminder: Add a new reminder.\n- delete reminder: Delete an existing reminder.\n- show reminders: Show all reminders."
+    elif "help translate" in user_input.lower():
+        return "TranslateBot commands:\n To use:   \n  'translate+(your input here to translate)'  "
     else:
         return "Available commands:\n- help weather: List WeatherBot commands.\n- help reminders: List ReminderBot commands."
 
@@ -28,7 +30,7 @@ class Chatbot:
 
     @staticmethod
     def greet(): #COuld be greet also can leave it blank as well.
-        return "  "
+        return " Hi "
 
 #getter kullandigim kisim.
     @classmethod
@@ -36,7 +38,7 @@ class Chatbot:
         return cls.__name__
 
     def get_input(self):
-        user_input = input(f"I'm your {self.get_class_name()},and my name is {self.get_name()}, what can I help you with today? ")
+        user_input = input(f"I'm {self.get_name()}, what can I help you with today? ")
         return user_input
 
     @abstractmethod
@@ -130,11 +132,41 @@ class ReminderBot(Chatbot):
         return f"Your reminders:\n{reminders_list}"
 
 class TranslateBot(Chatbot):
-    pass
+    def __init__(self, name, translate_api_key):
+        super().__init__(name)
+        self.translate_api_key = translate_api_key
+
+    def generate_response(self, user_input):
+        if user_input.startswith("translate"):
+            text_to_translate = user_input[len("translate "):].strip()  # translate kelimesinin sonrasini al.
+            return self.translate_text(text_to_translate)
+
+    def translate_text(self, text):
+        url = "https://google-translate113.p.rapidapi.com/api/v1/translator/html"
+        headers = {
+            'X-RapidAPI-Key': self.translate_api_key,
+            'X-RapidAPI-Host': 'google-translate113.p.rapidapi.com'
+        }
+        querystring = {"q": text, "target": "en"}  # hedef dil İngilizce
+        response = requests.get(url, headers=headers, params=querystring)
+
+        # Debugging information
+        print(f"Response status code: {response.status_code}")
+        print(f"Response content: {response.content}")
+
+        if response.status_code == 200:
+            return response.json().get('data', {}).get('translations', [])[0].get('translatedText', 'Translation not found')
+        else:
+            return "Sorry, there was an error with translation."
+
+
+
+
 
 if __name__ == "__main__":
     weather_bot = WeatherBot(name, os.getenv("weather_api_key"))
     reminder_bot = ReminderBot(name)
+    translate_bot = TranslateBot(name, os.getenv("translate_api_key"))
     try:
         while True:
             print(Chatbot.greet())
@@ -145,8 +177,10 @@ if __name__ == "__main__":
                 response = weather_bot.generate_response(user_input)
             elif "reminder" in user_input.lower():
                 response = reminder_bot.generate_response(user_input)
+            elif user_input.lower().startswith("translate"):
+                response = translate_bot.generate_response(user_input)
             else:
-                response = "I can only provide weather information or manage reminders, for now. Type 'help weather' or 'help reminders' for spesific information. "
+                response = "I can only provide weather information, manage reminders and translating your input text to English for now.\n Type 'help weather' or 'help reminders' for spesific information. "
             print(response)
     except KeyboardInterrupt:
         print("\nProgram interrupted by user. Exiting...")
