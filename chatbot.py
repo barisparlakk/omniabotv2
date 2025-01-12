@@ -159,10 +159,6 @@ class TranslateBot(Chatbot):
         else:
             return "Sorry, there was an error with translation."
 
-
-
-
-
 if __name__ == "__main__":
     weather_bot = WeatherBot(name, os.getenv("weather_api_key"))
     reminder_bot = ReminderBot(name)
